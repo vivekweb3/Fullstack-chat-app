@@ -1,29 +1,21 @@
-import mongoose from "mongoose";
+import express from "express";
+import {
+  checkAuth,
+  login,
+  logout,
+  signup,
+  updateProfile,
+} from "../controllers/auth.controller.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 
-const userSchema = new mongoose.Schema(
-  {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    fullName: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      minlength: 6,
-    },
-    profilePic: {
-      type: String,
-      default: "",
-    },
-  },
-  { timestamps: true }
-);
+const router = express.Router();
 
-const User = mongoose.model("User", userSchema);
+router.post("/signup", signup);
+router.post("/login", login);
+router.post("/logout", logout);
 
-export default User;
+router.put("/update-profile", protectRoute, updateProfile);
+
+router.get("/check", protectRoute, checkAuth);
+
+export default router;
