@@ -22,8 +22,8 @@ A real-time chat application built using the MERN stack (MongoDB, Express.js, Re
 
 ## Build the app
 
-\_\*\*npm run build
+npm run build
 
 ## Start the app
 
-\_\*\*npm start
+npm start
